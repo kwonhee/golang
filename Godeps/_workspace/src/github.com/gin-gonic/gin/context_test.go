@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/heroku/go-getting-started/Godeps/_workspace/src/github.com/manucorporat/sse"
+	"github.com/manucorporat/sse"
 	"github.com/stretchr/testify/assert"
 )
 

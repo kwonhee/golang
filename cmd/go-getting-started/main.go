@@ -48,14 +48,22 @@ func main() {
 		   }*/
 		//		id := c.Param("id")  // 여기서 받아옴
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
-		results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\" FROM restaurant where \"RestaurantID\" = 1")
+		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\" FROM restaurant where \"RestaurantID\" = 1")
+		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"mainName\" FROM main where \"mainID\" = 1")
+		
+		var articles []*mainTable
+		for _, r := range mainresults {
+			b := r.(*mainTable)
+			articles = append(articles, b)
+		}
 
+/*
 		var articles []*RestaurantTable
 		for _, r := range results {
 			b := r.(*RestaurantTable)
 			articles = append(articles, b)
 		}
-
+*/
 		//msg.Name = name
 		//msg.Message = "hey"
 		//msg.Number = 123
@@ -68,13 +76,19 @@ func main() {
 
 }
 
+type mainTable struct {
+	mainID       int
+	mainName     string
+}
+
+/*
 type RestaurantTable struct {
 	RestaurantID       int
 	RestaurantName     string
 	RestaurantHours    string
 	RestaurantPosition string
 }
-
+*/
 func InitDB() {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish

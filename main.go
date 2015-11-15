@@ -66,7 +66,7 @@ func main() {
 	
 		router.GET("/moreJSON3/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
 		
-		menuresults, _ := Dbm.Select(RestaurantTable{}, "SELECT \"MenuName\", \"MenuPrice\" FROM menu")
+		menuresults, _ := Dbm.Select(MenuTable{}, "SELECT \"MenuName\", \"MenuPrice\" FROM menu")
 		
 		var articles []*MenuTable
 		for _, r := range menuresults {

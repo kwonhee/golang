@@ -39,14 +39,7 @@ func main() {
 	})
 
 	router.GET("/moreJSON1/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
-		// You also can use a struct
-		/*
-		   var msg struct {
-		       Name    string `json:"user"`
-		       Message string
-		       Number  int
-		   }*/
-		//		id := c.Param("id")  // 여기서 받아옴
+	
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
 		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
 		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
@@ -57,18 +50,21 @@ func main() {
 			articles = append(articles, b)
 		}
 
-/*
+		c.JSON(http.StatusOK, articles)
+	})
+	
+		router.GET("/moreJSON2/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
+	
+		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
+		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
+		restaurantresults, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\", \"RestaurantPosition\" FROM restaurant")
+		
 		var articles []*RestaurantTable
-		for _, r := range results {
+		for _, r := range restaurantresults {
 			b := r.(*RestaurantTable)
 			articles = append(articles, b)
 		}
-*/
-		//msg.Name = name
-		//msg.Message = "hey"
-		//msg.Number = 123
-		// Note that msg.Name becomes "user" in the JSON
-		// Will output  :   {"user": "Lena", "Message": "hey", "Number": 123}
+
 		c.JSON(http.StatusOK, articles)
 	})
 
@@ -81,14 +77,14 @@ type mainTable struct {
 	MainName     string
 }
 
-/*
+
 type RestaurantTable struct {
 	RestaurantID       int
 	RestaurantName     string
 	RestaurantHours    string
 	RestaurantPosition string
 }
-*/
+
 func InitDB() {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish

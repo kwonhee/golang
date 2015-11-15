@@ -49,7 +49,7 @@ func main() {
 		//		id := c.Param("id")  // 여기서 받아옴
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
 		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\" FROM restaurant where \"RestaurantID\" = 1")
-		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"mainName\", \"mainID\" FROM main where \"mainID\" = 1")
+		mainresults, _ := Dbm.Select(mainTable{}, "SELECT * FROM main")
 		
 		var articles []*mainTable
 		for _, r := range mainresults {
@@ -77,8 +77,8 @@ func main() {
 }
 
 type mainTable struct {
-	mainID       int
-	mainName     string
+	MainID       int // 앞에 대문자 써줘야함
+	MainName     string
 }
 
 /*

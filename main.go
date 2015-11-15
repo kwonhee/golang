@@ -48,7 +48,7 @@ func main() {
 		   }*/
 		//		id := c.Param("id")  // 여기서 받아옴
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
-		results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\" FROM restaurant")
+		results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
 		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
 		
 		var articles []*RestaurantTable

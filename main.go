@@ -48,12 +48,12 @@ func main() {
 		   }*/
 		//		id := c.Param("id")  // 여기서 받아옴
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
-		results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
-		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
+		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
+		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
 		
-		var articles []*RestaurantTable
-		for _, r := range results {
-			b := r.(*RestaurantTable)
+		var articles []*mainTable
+		for _, r := range mainresults {
+			b := r.(*mainTable)
 			articles = append(articles, b)
 		}
 
@@ -75,20 +75,20 @@ func main() {
 	router.Run(":" + port)
 
 }
-/*
+
 type mainTable struct {
 	MainID       int // 앞에 대문자 써줘야함
 	MainName     string
 }
-*/
 
+/*
 type RestaurantTable struct {
 	RestaurantID       int
 	RestaurantName     string
 	RestaurantHours    string
 	RestaurantPosition string
 }
-
+*/
 func InitDB() {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish

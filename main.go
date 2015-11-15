@@ -49,7 +49,7 @@ func main() {
 		//		id := c.Param("id")  // 여기서 받아옴
 		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
 		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\" FROM restaurant where \"RestaurantID\" = 1")
-		mainresults, _ := Dbm.Select(mainTable{}, "SELECT * FROM main")
+		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
 		
 		var articles []*mainTable
 		for _, r := range mainresults {
@@ -89,6 +89,7 @@ type RestaurantTable struct {
 	RestaurantPosition string
 }
 */
+
 func InitDB() {
 	// connect to db using standard Go database/sql API
 	// use whatever database/sql driver you wish

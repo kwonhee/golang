@@ -40,8 +40,6 @@ func main() {
 
 	router.GET("/moreJSON1/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
 	
-		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
-		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
 		mainresults, _ := Dbm.Select(mainTable{}, "SELECT \"MainID\", \"MainName\" FROM main")
 		
 		var articles []*mainTable
@@ -54,9 +52,7 @@ func main() {
 	})
 	
 		router.GET("/moreJSON2/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
-	
-		//name, _ := Dbm.SelectStr("SELECT \"RestaurantName\" FROM \"restaurant\" where \"RestaurantID\" =$1", id)
-		//results, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantHours\" FROM restaurant")
+		
 		restaurantresults, _ := Dbm.Select(RestaurantTable{}, "SELECT \"RestaurantName\", \"RestaurantHours\", \"RestaurantPosition\" FROM restaurant")
 		
 		var articles []*RestaurantTable

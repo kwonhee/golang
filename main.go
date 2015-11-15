@@ -63,6 +63,19 @@ func main() {
 
 		c.JSON(http.StatusOK, articles)
 	})
+	
+		router.GET("/moreJSON3/", func(c *gin.Context) { //여기 id던져줄수 있음 /:uid
+		
+		menuresults, _ := Dbm.Select(RestaurantTable{}, "SELECT \"MenuName\", \"MenuPrice\" FROM menu")
+		
+		var articles []*MenuTable
+		for _, r := range menuresults {
+			b := r.(*MenuTable)
+			articles = append(articles, b)
+		}
+
+		c.JSON(http.StatusOK, articles)
+	})
 
 	router.Run(":" + port)
 
@@ -80,6 +93,13 @@ type RestaurantTable struct {
 	RestaurantHours    string
 	RestaurantPosition string
 }
+
+type MenuTable struct {
+	MenuID       int
+	MenuName     string
+	MenuPrice    int
+}
+
 
 func InitDB() {
 	// connect to db using standard Go database/sql API

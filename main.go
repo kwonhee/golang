@@ -97,7 +97,7 @@ type RestaurantTable struct {
 type MenuTable struct {
 	MenuID       int
 	MenuName     string
-	MenuPrice    int
+	MenuPrice    string
 }
 
 
